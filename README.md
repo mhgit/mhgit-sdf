@@ -56,6 +56,11 @@ The default options are:
     -- What to do when entering a directory, personally I use "Oil .", but Ex is preinstalled with neovim
     projectEntry = "Ex",
 
+    -- Homes used by telescope.extensions.spaceport.find()
+    -- Spaceport scans these for exact `.git` directories using `fd`.
+    projectHomes = { "~" },
+    -- projectHomes = { "~/git-projects", "~/other-projects" },
+
     -- The farthest back in time that directories should be shown
     -- I personally use "yesterday" so that there aren't millions of directories on the screen.
     -- the possible values are: "pin", "today", "yesterday", "pastWeek", "pastMonth", and "later"
@@ -120,7 +125,7 @@ All the remaps are visible at the top of the screen with the default configurati
 When you are first starting out with spaceport, it has no history of which directories you have opened, there are 3 methods to add directories to the recents section:
 
 1. Open a directory by cd'ing to it and then running `nvim .` in your terminal
-2. Use telescope and run `require('telescope').extensions.spaceport.find()`, this will allow you to fuzzy find all subdirectories of the current directory and open them (using the linux `find` command)
+2. Use telescope and run `require('telescope').extensions.spaceport.find()`, this scans `projectHomes` for exact `.git` directories using `fd` and opens the parent project directory
 3. Run `:Spaceport importOldfiles` to import the files from `vim.v.oldfiles`, this option is not recommended because it will import files, not directories, and it will not import the time data, so all the files will be marked as being opened today
 
 This is what spaceport looks like when projects are tagged.

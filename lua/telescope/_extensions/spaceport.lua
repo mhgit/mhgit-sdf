@@ -48,19 +48,10 @@ local function check()
     if has_core then
         ok("spaceport core loaded")
     else
-        local hint = "spaceport.nvim"
-        do
-            local ok_util, utils = pcall(require, "spaceport.utils")
-            if ok_util and type(utils.plugin_install_hint) == "function" then
-                hint = utils.plugin_install_hint()
-            end
-        end
         err(
             "spaceport core not loaded",
             {
-                ("Install the spaceport plugin (%s) and call require('spaceport').setup({})"):format(
-                    hint
-                ),
+                "Install the spaceport plugin (spaceport.nvim) and call require('spaceport').setup({})",
             }
         )
     end

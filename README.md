@@ -2,10 +2,6 @@
 
 The "blazingly fastest" way to get to your projects
 
-**Fork:** [`mhgit/spaceport-sdf`](https://github.com/mhgit/spaceport-sdf) · **Upstream:** [`CWood-sdf/spaceport.nvim`](https://github.com/CWood-sdf/spaceport.nvim)
-
-Install this repo with the slug below. Use `'CWood-sdf/spaceport.nvim'` if you want the upstream plugin instead. The screenshot under [Usage](#usage) is hosted on the upstream repo so it stays valid on this fork.
-
 ## Why
 
 I got really annoyed with the pattern of cd'ing to a project folder then doing `nvim .` then starting to program. I wanted to just type `nvim` and then a few keystrokes later, be in a project. I wanted something that was kind of like [harpoon](https://github.com/ThePrimeagen/harpoon), but for directories, not files.
@@ -30,7 +26,7 @@ lazy.nvim
 
 ```lua
 {
-    'mhgit/spaceport-sdf',
+    'CWood-sdf/spaceport.nvim',
     opts = {
 
     },
@@ -171,7 +167,7 @@ sections = {
 },
 ```
 
-This allows you to override every property detailed [below](https://github.com/mhgit/spaceport-sdf#custom-screens) EXCEPT `lines`.
+This allows you to override every property detailed [below](https://github.com/CWood-sdf/spaceport.nvim#custom-screens) EXCEPT `lines`.
 
 Overriding remaps is a slight bit different from the rest of the properties. If you would like to override a remap, do this:
 
@@ -387,6 +383,8 @@ require('telescope').extensions.spaceport.tmux_sessions()
 
 Or you can search for a directory that is not yet registered in spaceport (requires `fd`; tmux pickers require `tmux`):
 
+Config `projectHomes`: list of project folders the telescope find extension scans.
+
 ```lua
 require('telescope').extensions.spaceport.find()
 ```
@@ -415,16 +413,3 @@ All other plugins use the `vim.v.oldfiles` to keep track of your most recently u
 ## Contributing
 
 Before contributing, read [ARCHITECTURE.md](ARCHITECTURE.md).
-
-### Upstream pull requests
-
-Before opening a PR against **[CWood-sdf/spaceport.nvim](https://github.com/CWood-sdf/spaceport.nvim)**, revert fork-oriented documentation so upstream reviewers see their repo, not this fork:
-
-- **README.md** — Remove the fork banner at the top (upstream usually has none). Set the lazy.nvim slug back to `'CWood-sdf/spaceport.nvim'`. Change fork-specific links (for example the `#custom-screens` anchor) from `mhgit/spaceport-sdf` to `CWood-sdf/spaceport.nvim`. The Usage screenshot can keep pointing at upstream assets (this fork already uses that URL).
-- **doc/spaceport.txt** — Regenerate from README after those edits (push to `main` triggers panvimdoc in CI, or run panvimdoc locally).
-
-Quick audit:
-
-```bash
-rg 'mhgit/spaceport-sdf|CWood-sdf/spaceport.nvim' README.md doc/
-```
